@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 
 public class PersonagemAnimacao {
 	private String nome;
-	private Animation wait, attack, dead, hurt;
+	private Animation wait, attack, dead, hurt, morto;
 	private Animation personagem;
 	private int[] personagemPosicao = new int[2];
 	private boolean boolAttack;
@@ -39,13 +39,18 @@ public class PersonagemAnimacao {
 			dead2[i] = new Image(nome+"/dead/dead_"+(i+1)+".png"); 
 		dead = new Animation(dead2, 200);
 		
+		
+		Image[] morto2 = {new Image(nome+"/dead/dead_"+nAnimacoes+".png")}; 
+		morto = new Animation(morto2, 200);
+		
+		
 		nAnimacoes = new File(nome+"/hurt").list().length;
 		Image[] hurt2 = new Image[nAnimacoes];
 		for(int i=0; i<nAnimacoes; i++)
 			hurt2[i] = new Image(nome+"/hurt/hurt_"+(i+1)+".png"); 
 		hurt = new Animation(hurt2, 200);
 		
-		
+
 		personagem = wait;
 		
 		boolAttack = false;
@@ -63,8 +68,8 @@ public class PersonagemAnimacao {
 	}
 
 
-	public void setPersonagemPosicao(int[] personagemPosicao) {
-		this.personagemPosicao = personagemPosicao;
+	public void setPersonagemPosicao(int x, int personagemPosicao) {
+		this.personagemPosicao[x] += personagemPosicao;
 	}
 
 
@@ -113,6 +118,19 @@ public class PersonagemAnimacao {
 		{
 			boolAttack = false;
 		}
+	}
+	
+	public void morreu()
+	{
+		personagem = dead;
+		time = 0;
+		stop = true;
+	}
+	
+	public void morreu(int delta)
+	{
+			personagem = morto;
+		
 	}
 	
 }
