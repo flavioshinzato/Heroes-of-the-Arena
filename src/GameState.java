@@ -13,10 +13,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GameState  extends BasicGameState{
 	
-	private Personagem warrior;
-	private Personagem mage;
-	private Personagem archer;
-	private Personagem skeleton;
+	private PersonagemAnimacao warrior;
+	private PersonagemAnimacao mage;
+	private PersonagemAnimacao archer;
+	private PersonagemAnimacao skeleton;
 	
 	private Image background;
 	private Image actionBar;
@@ -29,7 +29,7 @@ public class GameState  extends BasicGameState{
 
 	int posX, posY;
 
-	public GameState(int state) {
+	public GameState() {
 	}
 	
 	@Override
@@ -38,11 +38,11 @@ public class GameState  extends BasicGameState{
 		actionBar = new Image("background/bg1.png"); 
 		
 		
-		warrior = new Personagem("warrior", 150, 200);
-		mage = new Personagem("mage", 40, 180);
-		archer = new Personagem("archer", 30, 270);
+		warrior = new PersonagemAnimacao("warrior", 150, 200);
+		mage = new PersonagemAnimacao("mage", 40, 180);
+		archer = new PersonagemAnimacao("archer", 30, 270);
 		
-		skeleton = new Personagem("skeleton", 500, 200);
+		skeleton = new PersonagemAnimacao("skeleton", 500, 200);
 		
 		button = new Button("attack", 100,100);
 		
