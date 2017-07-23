@@ -35,7 +35,7 @@ public class GameState  extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		background = new Image("background/fight.png");
-		actionBar = new Image("background/bg1.png"); 
+		actionBar = new Image("background/bg2.png"); 
 		
 		
 		warrior = new PersonagemAnimacao("warrior", 150, 200);

@@ -12,10 +12,12 @@ public class MenuState extends BasicGameState{
 	private Button creditButton;
 	private int posX, posY;
 	
+	public MenuState() {
+	}
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		bg = new Image("background/bg1.png");
+		bg = new Image("background/bg2.png");
 		playButton = new Button("Jogar", 280, 380);
 		creditButton = new Button("Créditos", 280, 260);
 		
@@ -40,7 +42,7 @@ public class MenuState extends BasicGameState{
 		
 		if(playButton.inArea(posX, posY)){	
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(1);
+				sbg.enterState(3);
 			}
 		}
 		
@@ -49,8 +51,7 @@ public class MenuState extends BasicGameState{
 				sbg.enterState(2);
 			}
 		}
-		
-		
+			
 		
 	}
 
