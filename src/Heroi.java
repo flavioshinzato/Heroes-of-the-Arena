@@ -81,6 +81,6 @@ public class Heroi extends Personagem{
 	@Override
 	public int getDano()
 	{
-		return 0;
+		return 5;
 	}
 }

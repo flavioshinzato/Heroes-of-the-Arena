@@ -71,7 +71,7 @@ public class SaveState extends BasicGameState {
 		
 		if(voltar.inArea(posX, posY)){	
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(0);
+				sbg.enterState(3);
 			}
 		}
 	}

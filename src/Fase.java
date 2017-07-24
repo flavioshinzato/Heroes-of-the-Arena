@@ -32,8 +32,8 @@ public class Fase {
 		{
 			personagemAtual++;
 			
-			if(personagemAtual > 7)
-				personagemAtual = 1;
+			if(personagemAtual > 5)
+				personagemAtual = 0;
 			
 			if(personagens[personagemAtual].getVidaAtual() > 0)
 				return personagemAtual;
@@ -60,46 +60,58 @@ public class Fase {
 		return false;
 	}
 	
-	public void combateJogadores()
+	public int combateJogadores(int vezJogador)
 	{
-		while(timeHeroiVivo() && timeInimigoVivo())
+		int jogadorAlvo = 0;
+		// Vez do Inimigo?
+		//System.out.println("AEHOO");
+		if(vezJogador < 3)
 		{
-			int vezJogador = this.vezJogador();
-			int jogadorAlvo = 0;
-			// Vez do Inimigo?
-			if(vezJogador < 3)
+			for(int i=5; i>=3; i--)
 			{
-				for(int i=6; i>=4; i--)
+				if(estaVivo(i))
 				{
-					if(estaVivo(i))
-					{
-						jogadorAlvo = i;
-					}
+					jogadorAlvo = i;
 				}
-				personagens[jogadorAlvo].perderVida(personagens[vezJogador].getDano());
-				System.out.println(personagens[vezJogador].getNome() + " causou " + personagens[vezJogador].getDano()+ "de dano a" + personagens[jogadorAlvo].getNome());
-				if(!estaVivo(jogadorAlvo))
-					System.out.println(personagens[jogadorAlvo].getNome() + " Morreu");
 			}
-			// Vez Aliado
-			else
-			{
-				//System.out.println("Escolha o alvo da ação:");
-				for(int i=3; i<6;i++)
-				{
-					if(estaVivo(i))
-					{
-						jogadorAlvo = i;
-					}
-				}
-				personagens[jogadorAlvo].perderVida(personagens[vezJogador].getDano());
-				System.out.println(personagens[vezJogador].getNome() + " causou " + personagens[vezJogador].getDano()+ "de dano a" + personagens[jogadorAlvo].getNome());
-				if(!estaVivo(jogadorAlvo))
-					System.out.println(personagens[jogadorAlvo].getNome() + " Morreu");
-			}
+			personagens[jogadorAlvo].perderVida(personagens[vezJogador].getDano());
+			personagens[vezJogador].getAnimacao().attack();
 			
+			System.out.println(personagens[vezJogador].getNome() + " causou " + personagens[vezJogador].getDano()+ "de dano a " + personagens[jogadorAlvo].getNome());
+			if(!estaVivo(jogadorAlvo))
+			{
+				System.out.println(personagens[jogadorAlvo].getNome() + " Morreu");
+				personagens[jogadorAlvo].getAnimacao().morreu();
+				return jogadorAlvo;
+			}
+			return jogadorAlvo;
 		}
-		
+		// Vez Aliado
+		else
+		{
+			//System.out.println("Escolha o alvo da ação:");
+			for(int i=0; i<3;i++)
+			{
+				if(estaVivo(i))
+				{
+					jogadorAlvo = i;
+				}
+			}
+			personagens[jogadorAlvo].perderVida(personagens[vezJogador].getDano());
+			personagens[vezJogador].getAnimacao().attack();
+			System.out.println(personagens[vezJogador].getNome() + " causou " + personagens[vezJogador].getDano()+ "de dano a" + personagens[jogadorAlvo].getNome());
+			if(!estaVivo(jogadorAlvo))
+			{
+				System.out.println(personagens[jogadorAlvo].getNome() + " Morreu");
+				return jogadorAlvo;
+			}
+			return jogadorAlvo;
+		}
 	}
 
+	public Personagem getPersonagens(int i) {
+		return personagens[i];
+	}
+
+	
 }
