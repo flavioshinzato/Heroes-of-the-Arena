@@ -17,6 +17,7 @@ public class SetupClass extends StateBasedGame{
 		this.addState(new GameState());
 		this.addState(new CreditState());
 		this.addState(new InterState());
+		this.addState(new SaveState());
 	}
 	
 	public static void main(String[] args) throws SlickException {

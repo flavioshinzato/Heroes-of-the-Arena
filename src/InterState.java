@@ -16,37 +16,38 @@ public class InterState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		bg = new Image("background/bg2.png");
-		newGameButton = new Button("Novo Jogo", 280, 380);
-		continueButton = new Button("Continuar", 280, 260);
-		voltar = new Button("Voltar", 280, 140);
+		newGameButton = new Button("Novo Jogo", 280, 460);
+		continueButton = new Button("Continuar", 280, 320);
+		voltar = new Button("Voltar", 280, 200);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		bg.draw(0, 0, 800, 600);
-		g.drawString("Heroes of the Arena", 280, 200);
 		newGameButton.getButton().draw(newGameButton.getX(),600-newGameButton.getY(), 189, 63);
 		continueButton.getButton().draw(continueButton.getX(),600-continueButton.getY(), 189, 63);
 		voltar.getButton().draw(voltar.getX(),600-voltar.getY(), 189, 63);
 		
 		
-		posX = Mouse.getX();
-		posY = Mouse.getY();
+		
 		g.drawString(""+posX+" "+posY, 200, 200);
 		
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		posX = Mouse.getX();
+		posY = Mouse.getY();
+		
 		if(newGameButton.inArea(posX, posY)){	
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(3);
+				sbg.enterState(1);
 			}
 		}
 		
 		if(continueButton.inArea(posX, posY)){	
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(1);
+				sbg.enterState(4);
 			}
 		}
 		

@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 public class Personagem {
 	protected String nome;
 	protected int vidaAtual;
-	private int vidaMaxima;
+	protected int vidaMaxima;
 	protected PersonagemAnimacao animacao;
 	protected Image barraVida;
 	protected Image barraMana;
